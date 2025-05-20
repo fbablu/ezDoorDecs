@@ -15,7 +15,6 @@ An easy way to generate door decks for Resident Advisors (RAs). This tool automa
 
 ## Prerequisites
 
-- Python 3.12 or higher
 - Poetry (for dependency management)
 
 ## Installation

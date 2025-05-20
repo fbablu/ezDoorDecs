@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "doordecks"
+version = "0.1.0"
+description = "A Python script for generating PowerPoint presentations using resident data"
+authors = ["fbablu <fardeeneb@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+pandas = "^2.2.2"
+requests = "^2.32.3"
+python-pptx = "^1.0.2"
+pillow = "^10.4.0"
+beautifulsoup4 = "^4.12.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
