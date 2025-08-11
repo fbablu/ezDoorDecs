@@ -102,6 +102,7 @@ def create_clash_royale_presentation(residents_df, image_urls):
                 resident = residents_df.iloc[index]
                 name = resident['Name']
                 room = resident['Room']
+                card = resident['Card']
 
                 # Get card rarity for this resident
                 rarity = CARD_RARITIES[index % len(CARD_RARITIES)]

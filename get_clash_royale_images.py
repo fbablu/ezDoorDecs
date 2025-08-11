@@ -8,18 +8,8 @@ def get_clash_royale_card_urls():
     """Scrape Clash Royale card images from wiki"""
 
     # List of popular Clash Royale cards
-    card_names = [
-        "Archers", "Knight", "Goblins", "Giant", "Wizard", "Dragon", "Princess",
-        "Prince", "Musketeer", "Fireball", "Arrows", "Barbarians", "Minions",
-        "Skeleton_Army", "Valkyrie", "Hog_Rider", "Freeze", "Mirror", "Rage",
-        "Ice_Wizard", "Balloon", "Witch", "Barbarian_Hut", "Lightning", "Golem",
-        "Poison", "Baby_Dragon", "Dark_Prince", "Three_Musketeers", "Guards",
-        "Miner", "Sparky", "Bowler", "Graveyard", "Ice_Golem", "Mega_Minion",
-        "Ice_Spirit", "Elite_Barbarians", "Electro_Wizard", "Inferno_Dragon",
-        "Bandit", "Royal_Ghost", "Zappies", "Hunter", "Magic_Archer", "Rascals",
-        "Royal_Hogs", "Goblin_Giant", "Electro_Dragon", "Ram_Rider", "Wall_Breakers",
-        "Battle_Healer", "Elixir_Golem", "Firecracker", "Earthquake", "Goblin_Cage"
-    ]
+    card_names = ["P.E.K.K.A.", "Royal_Giant", "Prince", "Dark_Prince", "Miner", "Bandit", "Ice_Spirit", "Electro_Dragon", "Baby_Dragon", "Skeleton_Dragons", "Night_Witch", "Witch", "Executioner", "Hunter", "Bowler", "Magic_Archer", "Dart_Goblin", "Royal_Recruits", "Royal_Ghost", "Cannon_Cart", "Flying_Machine", "Mega_Knight", "Lumberjack", "Ram_Rider", "Elite_Barbarians", "Barbarians", "Guards", "Fisherman", "Tornado",
+                  "Lightning", "Arrows", "Rocket", "Zap", "Furnace", "Zappies", "Minions", "Goblin_Hut", "Hog_Rider", "Skeleton_Army", "Skeletons", "Monk", "Little_Prince", "Goblin_Drill", "Goblin_Barrel", "Knight", "Bomber", "Electro_Spirit", "Spear_Goblins", "Mini_P.E.K.K.A.", "Mega_Minion", "Berserker", "Wizard", "Ice_Wizard", "Firecracker", "Valkyrie", "Battle_Healer", "Mother_Witch", "Heal_Spirit", "Archers", "Musketeer"]
 
     base_url = "https://clashroyale.fandom.com"
     card_image_urls = []
