@@ -9,6 +9,7 @@ from pptx.dml.color import RGBColor
 from pptx.enum.shapes import MSO_SHAPE
 from pptx.enum.text import PP_ALIGN
 
+
 def adjust_pptx(residents_df, image_urls):
     prs = Presentation()
     folder_path = 'adjusted_pptx'
@@ -36,7 +37,8 @@ def adjust_pptx(residents_df, image_urls):
                 room = resident['Room']
 
                 # Adjusted positioning and sizing
-                left = Inches(0.15 + i * 3.3)  # Adjusted based on provided values
+                # Adjusted based on provided values
+                left = Inches(0.15 + i * 3.3)
                 top = Inches(0.15)
                 width = Inches(3.04)
                 height = Inches(7.1)
@@ -48,13 +50,15 @@ def adjust_pptx(residents_df, image_urls):
                 )
 
                 shape.fill.solid()
-                shape.fill.fore_color.rgb = RGBColor(200, 200, 200)  # Light gray fill
+                shape.fill.fore_color.rgb = RGBColor(
+                    200, 200, 200)  # Light gray fill
                 shape.line.color.rgb = RGBColor(0, 0, 0)  # Black border
                 shape.line.width = Pt(4)
 
                 # Add image
                 try:
-                    image_url = image_urls.iloc[resident_index]  # Get image URL
+                    # Get image URL
+                    image_url = image_urls.iloc[resident_index]
                     response = requests.get(image_url)
                     response.raise_for_status()  # Check for HTTP errors
                     image = Image.open(BytesIO(response.content))
@@ -64,7 +68,8 @@ def adjust_pptx(residents_df, image_urls):
                         image = image.convert('RGB')
 
                     # Save image temporarily
-                    image_filename = os.path.join(image_dir, f'temp_{name}.jpg')
+                    image_filename = os.path.join(
+                        image_dir, f'temp_{name}.jpg')
                     image.save(image_filename)
 
                     img_border_left = left + Inches(0.275)
@@ -78,8 +83,10 @@ def adjust_pptx(residents_df, image_urls):
                     )
 
                     img_border.fill.solid()
-                    img_border.fill.fore_color.rgb = RGBColor(200, 200, 200)  # Light gray fill
-                    img_border.line.color.rgb = RGBColor(0, 0, 0)  # Black border
+                    img_border.fill.fore_color.rgb = RGBColor(
+                        200, 200, 200)  # Light gray fill
+                    img_border.line.color.rgb = RGBColor(
+                        0, 0, 0)  # Black border
                     img_border.line.width = Pt(4)
 
                     # Add villager image on top
@@ -94,7 +101,8 @@ def adjust_pptx(residents_df, image_urls):
 
                 # Add rectangle border for resident's name
                 name_border_left = left + Inches(0.15)
-                name_border_top = top + Inches(3.2)  # Adjust this value as needed
+                # Adjust this value as needed
+                name_border_top = top + Inches(3.2)
                 name_border_width = Inches(2.74)
                 name_border_height = Inches(1)  # Adjust as needed
 
@@ -108,7 +116,8 @@ def adjust_pptx(residents_df, image_urls):
                 name_border.line.width = Pt(3)
 
                 # Add text for resident's name on top of the border
-                name_textbox = slide.shapes.add_textbox(name_border_left, name_border_top, name_border_width, name_border_height)
+                name_textbox = slide.shapes.add_textbox(
+                    name_border_left, name_border_top, name_border_width, name_border_height)
                 name_textframe = name_textbox.text_frame
                 name_textframe.text = name
                 name_textframe.paragraphs[0].alignment = PP_ALIGN.CENTER
@@ -121,8 +130,10 @@ def adjust_pptx(residents_df, image_urls):
                 name_font.color.rgb = RGBColor(0, 0, 0)
 
                 # Add ellipse border for room number
-                room_border_left = left + Inches(0.1)  # Move it a bit to the left
-                room_border_top = top + Inches(5)  # Adjust this value as needed
+                # Move it a bit to the left
+                room_border_left = left + Inches(0.1)
+                # Adjust this value as needed
+                room_border_top = top + Inches(5)
                 room_border_width = Inches(2.8)
                 room_border_height = Inches(2.0)  # Smaller size
 
@@ -136,11 +147,13 @@ def adjust_pptx(residents_df, image_urls):
                 room_border.line.width = Pt(0)
 
                 # Set the position of the room number text box
-                room_textbox_left = left + Inches(0.2)  # Adjust horizontal position
+                # Adjust horizontal position
+                room_textbox_left = left + Inches(0.2)
                 room_textbox_top = Inches(5.64)  # Set vertical position
 
                 # Create the text box with the updated positions
-                room_textbox = slide.shapes.add_textbox(room_textbox_left, room_textbox_top, room_border_width, room_border_height)
+                room_textbox = slide.shapes.add_textbox(
+                    room_textbox_left, room_textbox_top, room_border_width, room_border_height)
                 room_textframe = room_textbox.text_frame
 
                 # Add the room number text
@@ -157,22 +170,22 @@ def adjust_pptx(residents_df, image_urls):
 
                 # Adjust line spacing to move the text down if needed
                 paragraph = room_textframe.paragraphs[0]
-                paragraph.space_before = Pt(20)  # Adjust this value to fine-tune the spacing
-
-
-
+                # Adjust this value to fine-tune the spacing
+                paragraph.space_before = Pt(20)
 
                 # Add bells icon
-                bells_left = left - 0.05
+                bells_left = left - Inches(0.05)
                 bells_top = top + Inches(3.9)
                 bells_width = Inches(2.04)
                 bells_height = Inches(2.04)
 
                 bells_icon = os.path.join('bells.png')
-                slide.shapes.add_picture(bells_icon, bells_left, bells_top, bells_width, bells_height)
+                slide.shapes.add_picture(
+                    bells_icon, bells_left, bells_top, bells_width, bells_height)
 
     # Save the modified presentation
-    save_path = os.path.join(folder_path, 'MAIN_Adjusted_Residents_Presentation.pptx')
+    save_path = os.path.join(
+        folder_path, 'MAIN_Adjusted_Residents_Presentation.pptx')
     prs.save(save_path)
     print(f"Presentation adjusted and saved as {save_path}")
 
@@ -181,8 +194,9 @@ def adjust_pptx(residents_df, image_urls):
     paths_df.to_csv('image_paths.csv', index=False)
     print("Image paths saved to image_paths.csv")
 
+
 # Load residents from CSV and image URLs from JSON
-residents_df = pd.read_csv('residents.csv')
+residents_df = pd.read_csv('residents_moore.csv')
 image_urls = pd.read_json('villager_image_urls.json', typ='series')
 
 # Call the function
