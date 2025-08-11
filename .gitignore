@@ -72,3 +72,5 @@ htmlcov/
 nosetests.xml
 coverage.xml
 *.cover
+
+residents_moore.csv

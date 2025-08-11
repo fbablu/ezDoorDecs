@@ -20,12 +20,14 @@ An easy way to generate door decks for Resident Advisors (RAs). This tool automa
 ## Installation
 
 1. Clone the repository:
+
 ```bash
 git clone https://github.com/yourusername/ezDoorDecks.git
 cd ezDoorDecks
 ```
 
 2. Install dependencies using Poetry:
+
 ```bash
 poetry install
 ```
@@ -37,16 +39,19 @@ poetry install
    - Room
 
 2. Run the image scraper to collect villager images:
+
 ```bash
 poetry run python get_villager_images.py
 ```
 
 3. Generate the presentation:
+
 ```bash
 poetry run python main.py
 ```
 
 The script will:
+
 - Create an `images` directory and download all resident images
 - Generate a PowerPoint presentation named `Residents_Presentation.pptx`
 - Create `image_paths.csv` containing the mapping of resident names to their image files

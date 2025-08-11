@@ -19,9 +19,6 @@ def adjust_pptx(residents_df, image_urls):
 
     paths = []
 
-    # for slide_index in range(0, len(residents_df) // 3 + 1):
-
-    # Adjust slide creation and rectangle positioning
     for slide_index in range(0, len(residents_df) // 3 + 1):
         print(f"Processing slide {slide_index + 1}")
 
@@ -37,7 +34,6 @@ def adjust_pptx(residents_df, image_urls):
                 room = resident['Room']
 
                 # Adjusted positioning and sizing
-                # Adjusted based on provided values
                 left = Inches(0.15 + i * 3.3)
                 top = Inches(0.15)
                 width = Inches(3.04)
@@ -72,8 +68,8 @@ def adjust_pptx(residents_df, image_urls):
                         image_dir, f'temp_{name}.jpg')
                     image.save(image_filename)
 
-                    img_border_left = left + Inches(0.275)
-                    img_border_top = top + Inches(0.5)
+                    img_border_left = Inches(left.inches + 0.275)
+                    img_border_top = Inches(top.inches + 0.5)
                     img_border_width = Inches(2.5)
                     img_border_height = Inches(2.5)
 
@@ -100,17 +96,16 @@ def adjust_pptx(residents_df, image_urls):
                     print(f"An error occurred with {name}'s image: {e}")
 
                 # Add rectangle border for resident's name
-                name_border_left = left + Inches(0.15)
-                # Adjust this value as needed
-                name_border_top = top + Inches(3.2)
+                name_border_left = Inches(left.inches + 0.15)
+                name_border_top = Inches(top.inches + 3.2)
                 name_border_width = Inches(2.74)
-                name_border_height = Inches(1)  # Adjust as needed
+                name_border_height = Inches(1)
 
                 name_border = slide.shapes.add_shape(
                     MSO_SHAPE.RECTANGLE,
                     name_border_left, name_border_top, name_border_width, name_border_height
                 )
-                name_border.fill.solid()  # Make the fill transparent
+                name_border.fill.solid()
                 name_border.fill.fore_color.rgb = RGBColor(249, 245, 223)
                 name_border.line.color.rgb = RGBColor(0, 0, 0)
                 name_border.line.width = Pt(3)
@@ -130,12 +125,10 @@ def adjust_pptx(residents_df, image_urls):
                 name_font.color.rgb = RGBColor(0, 0, 0)
 
                 # Add ellipse border for room number
-                # Move it a bit to the left
-                room_border_left = left + Inches(0.1)
-                # Adjust this value as needed
-                room_border_top = top + Inches(5)
+                room_border_left = Inches(left.inches + 0.1)
+                room_border_top = Inches(top.inches + 5)
                 room_border_width = Inches(2.8)
-                room_border_height = Inches(2.0)  # Smaller size
+                room_border_height = Inches(2.0)
 
                 room_border = slide.shapes.add_shape(
                     MSO_SHAPE.OVAL,
@@ -147,9 +140,8 @@ def adjust_pptx(residents_df, image_urls):
                 room_border.line.width = Pt(0)
 
                 # Set the position of the room number text box
-                # Adjust horizontal position
-                room_textbox_left = left + Inches(0.2)
-                room_textbox_top = Inches(5.64)  # Set vertical position
+                room_textbox_left = Inches(left.inches + 0.2)
+                room_textbox_top = Inches(5.64)
 
                 # Create the text box with the updated positions
                 room_textbox = slide.shapes.add_textbox(
@@ -163,19 +155,18 @@ def adjust_pptx(residents_df, image_urls):
                 # Set the font properties to match the resident name's font
                 room_font = room_textframe.paragraphs[0].font
                 room_font.name = 'Perpetua'
-                room_font.size = Pt(66)  # Same font size as the resident name
+                room_font.size = Pt(66)
                 room_font.bold = True
                 room_font.italic = True
                 room_font.color.rgb = RGBColor(0, 0, 0)
 
                 # Adjust line spacing to move the text down if needed
                 paragraph = room_textframe.paragraphs[0]
-                # Adjust this value to fine-tune the spacing
                 paragraph.space_before = Pt(20)
 
                 # Add bells icon
-                bells_left = left - Inches(0.05)
-                bells_top = top + Inches(3.9)
+                bells_left = Inches(left.inches - 0.05)
+                bells_top = Inches(top.inches + 3.9)
                 bells_width = Inches(2.04)
                 bells_height = Inches(2.04)
 
